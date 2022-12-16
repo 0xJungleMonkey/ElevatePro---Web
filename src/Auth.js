@@ -39,6 +39,7 @@ export default function Auth() {
         console.log(error);
       });
   }
+
   function handleSubmit(event) {
     if (email === "customer1@business.com" && password === "password123") {
       AuthService.login(email, password);
@@ -67,7 +68,6 @@ export default function Auth() {
   if (authMode === "signin") {
     return (
       <div className="Auth-form-container">
-        {/* <form className="Auth-form"> */}
         <Form className="Auth-form" onSubmit={handleSubmit}>
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Sign In</h3>
