@@ -1,22 +1,19 @@
-import React from 'react';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './app';
-import reportWebVitals from './reportWebVitals';
-import FullHeader from './Header';
+import React from "react";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./app";
+import reportWebVitals from "./reportWebVitals";
+import FullHeader from "./Header";
 // import Api from "./Api"
-const header = ReactDOM.createRoot(document.getElementById('header'));
-header.render(
-    <FullHeader/>
-);
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const header = ReactDOM.createRoot(document.getElementById("header"));
+header.render(<FullHeader />);
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
- 
   <React.StrictMode>
     {/* <Table /> */}
-    
-    <App/>
+
+    <App />
     {/* <Api /> */}
   </React.StrictMode>
 );

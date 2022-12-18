@@ -1,15 +1,17 @@
 import axios from "axios";
+import { useState } from "react";
 // import { useState } from "react";
 import authHeader from "./auth-header";
 // import { useState } from "react";
 const API_URL = "http://localhost:8080/api/test/";
 
-class UserService {
-  getPublicContent() {
+export default function UserService() {
+  let [realname1, setrealname1] = useState();
+  function getPublicContent() {
     return axios.get(API_URL + "all");
   }
 
-  getUserBoard() {
+  function getUserBoard() {
     return axios
       .request("https://java-api.codeboxxtest.xyz/customers/current", {
         headers: authHeader(),
@@ -27,7 +29,7 @@ class UserService {
       });
   }
 
-  getAllBuildings() {
+  function getAllBuildings() {
     return (
       axios
         .get("https://java-api.codeboxxtest.xyz/buildings", {
@@ -51,7 +53,7 @@ class UserService {
     //
     // .then((response) => JSON.stringify(response.data));
   }
-  getAllBatteries() {
+  function getAllBatteries() {
     return (
       axios
         .get("https://java-api.codeboxxtest.xyz/batteries", {
@@ -63,7 +65,35 @@ class UserService {
         })
     );
   }
-  getAllColumns() {
+  function getUserBattery() {
+    // let meowresponse = "";
+
+    axios
+      .get("https://java-api.codeboxxtest.xyz/buildings/1/batteries", {
+        headers: authHeader(),
+      })
+      .then(function (response) {
+        console.log(response.data[0]);
+
+        setrealname1(JSON.stringify(response.data[0]));
+        console.log(realname1);
+      });
+
+    console.log(realname1);
+    return realname1;
+    // return (
+    //   axios
+    //     .get("https://java-api.codeboxxtest.xyz/buildings/1/batteries", {
+    //       headers: authHeader(),
+    //     })
+    //     // .then((response) => JSON.stringify(response))
+    //     .then(function (response) {
+    //       localStorage.setItem("userbattery", JSON.stringify(response.data));
+    //     })
+    // );
+  }
+
+  function getAllColumns() {
     return (
       axios
         .get("https://java-api.codeboxxtest.xyz/columns", {
@@ -75,7 +105,7 @@ class UserService {
         })
     );
   }
-  getAllElevators() {
+  function getAllElevators() {
     return (
       axios
         .get("https://java-api.codeboxxtest.xyz/elevators", {
@@ -88,9 +118,9 @@ class UserService {
     );
   }
 
-  getAdminBoard() {
+  function getAdminBoard() {
     return axios.get(API_URL + "admin", { headers: authHeader() });
   }
 }
 
-export default new UserService();
+// export default new UserService();
