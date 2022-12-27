@@ -1,17 +1,16 @@
 import axios from "axios";
-import { useState } from "react";
+import { Component, useState } from "react";
 // import { useState } from "react";
 import authHeader from "./auth-header";
 // import { useState } from "react";
 const API_URL = "http://localhost:8080/api/test/";
 
-export default function UserService() {
-  let [realname1, setrealname1] = useState();
-  function getPublicContent() {
+class UserService extends Component {
+  getPublicContent() {
     return axios.get(API_URL + "all");
   }
 
-  function getUserBoard() {
+  getUserBoard() {
     return axios
       .request("https://java-api.codeboxxtest.xyz/customers/current", {
         headers: authHeader(),
@@ -29,7 +28,7 @@ export default function UserService() {
       });
   }
 
-  function getAllBuildings() {
+  getAllBuildings() {
     return (
       axios
         .get("https://java-api.codeboxxtest.xyz/buildings", {
@@ -53,7 +52,7 @@ export default function UserService() {
     //
     // .then((response) => JSON.stringify(response.data));
   }
-  function getAllBatteries() {
+  getAllBatteries() {
     return (
       axios
         .get("https://java-api.codeboxxtest.xyz/batteries", {
@@ -65,35 +64,35 @@ export default function UserService() {
         })
     );
   }
-  function getUserBattery() {
-    // let meowresponse = "";
+  // getUserBattery() {
+  //   // let meowresponse = "";
 
-    axios
-      .get("https://java-api.codeboxxtest.xyz/buildings/1/batteries", {
-        headers: authHeader(),
-      })
-      .then(function (response) {
-        console.log(response.data[0]);
+  //   axios
+  //     .get("https://java-api.codeboxxtest.xyz/buildings/1/batteries", {
+  //       headers: authHeader(),
+  //     })
+  //     .then(function (response) {
+  //       console.log(response.data[0]);
 
-        setrealname1(JSON.stringify(response.data[0]));
-        console.log(realname1);
-      });
+  //       setrealname1(JSON.stringify(response.data[0]));
+  //       console.log(realname1);
+  //     });
 
-    console.log(realname1);
-    return realname1;
-    // return (
-    //   axios
-    //     .get("https://java-api.codeboxxtest.xyz/buildings/1/batteries", {
-    //       headers: authHeader(),
-    //     })
-    //     // .then((response) => JSON.stringify(response))
-    //     .then(function (response) {
-    //       localStorage.setItem("userbattery", JSON.stringify(response.data));
-    //     })
-    // );
-  }
+  //   console.log(realname1);
+  //   return realname1;
+  //   // return (
+  //   //   axios
+  //   //     .get("https://java-api.codeboxxtest.xyz/buildings/1/batteries", {
+  //   //       headers: authHeader(),
+  //   //     })
+  //   //     // .then((response) => JSON.stringify(response))
+  //   //     .then(function (response) {
+  //   //       localStorage.setItem("userbattery", JSON.stringify(response.data));
+  //   //     })
+  //   // );
+  // }
 
-  function getAllColumns() {
+  getAllColumns() {
     return (
       axios
         .get("https://java-api.codeboxxtest.xyz/columns", {
@@ -105,7 +104,7 @@ export default function UserService() {
         })
     );
   }
-  function getAllElevators() {
+  getAllElevators() {
     return (
       axios
         .get("https://java-api.codeboxxtest.xyz/elevators", {
@@ -118,9 +117,9 @@ export default function UserService() {
     );
   }
 
-  function getAdminBoard() {
+  getAdminBoard() {
     return axios.get(API_URL + "admin", { headers: authHeader() });
   }
 }
 
-// export default new UserService();
+export default new UserService();

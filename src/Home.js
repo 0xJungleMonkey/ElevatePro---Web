@@ -16,15 +16,36 @@ import {
   Tab,
   Tile,
 } from "@itwin/itwinui-react";
+import { userEvent } from "@storybook/testing-library";
 // import Intervention from "./Intervention";
 // import userService from "./services/user.service";
-
+// function GetUserBoard() {
+//   const [user, setUser] = useState();
+//   useEffect(() => {
+//     axios
+//       .request("https://java-api.codeboxxtest.xyz/customers/current", {
+//         headers: authHeader(),
+//       })
+//       .then(function (response) {
+//         if (response.data.interventions !== null) {
+//           // for (let i = 0; i++; i < response.data.interventions.length){
+//           setUser(response.data.interventions);
+//           // }
+//         }
+//         return response.data;
+//       });
+//   }, []);
+//   return user;
+// }
 // import { isExpired, decodeToken } from "react-jwt";
 function Home() {
-  const customer = JSON.parse(localStorage.getItem("interventions"));
-  console.log(customer[0]);
+  // const customer =
+  // console.log(customer[0]);
   // const meow = UserService.getUserBoard();
-  // console.log(meow.interventions);
+  // console.log("meow" + meow.interventions);
+
+  // const customer = JSON.parse(localStorage.getItem("interventions"));
+
   // console.log(customer.id);
 
   // console.log(customers);
@@ -36,6 +57,26 @@ function Home() {
   // // console.log(customer.map());
   // console.log("xinqi");
   // if (customer.interventions) {
+
+  const [user, setUser] = useState([]);
+  useEffect(() => {
+    axios
+      .request("https://java-api.codeboxxtest.xyz/customers/current", {
+        headers: authHeader(),
+      })
+      .then(function (response) {
+        if (response.data.interventions !== null) {
+          // for (let i = 0; i++; i < response.data.interventions.length){
+          setUser(response.data.interventions);
+          // console.log(user);
+          // }
+        }
+        // console.log(user);
+        return response.data;
+      });
+  }, []);
+
+  // const customer = user;
 
   const [isOpen, setIsOpen] = useState(false);
   const [panelHeader, setPanelHeader] = useState("");
@@ -111,11 +152,11 @@ function Home() {
   // if (!customer) return null;
   return (
     <>
-      <div>
-        <h1> I love react</h1>
-        {/* <h1>{customer[0].id}</h1> */}
-        {/* <p>{customer.interventions[0].id}</p> */}
-      </div>
+      {/* <div> */}
+      {/* <h1> I love react</h1> */}
+      {/* <h1>{customer[0].id}</h1> */}
+      {/* <p>{customer.interventions[0].id}</p> */}
+      {/* </div> */}
       <InformationPanelWrapper>
         <Table
           columns={[
@@ -138,6 +179,12 @@ function Home() {
                   id: "result",
                 },
                 {
+                  Header: "Report",
+                  accessor: "report",
+                  id: "report",
+                },
+
+                {
                   Header: "Details",
                   Cell: function (props) {
                     const name = props.cell.row.original.name;
@@ -151,7 +198,7 @@ function Home() {
               ],
             },
           ]}
-          data={customer}
+          data={user}
           // data={[
           //   {
           //     name: "Task0",
