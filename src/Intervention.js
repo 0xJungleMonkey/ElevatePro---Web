@@ -11,10 +11,21 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 // function Intervention() {
-UserService.getAllBatteries();
-UserService.getAllColumns();
-UserService.getAllElevators();
-UserService.getAllBuildings();
+// UserService.getAllBatteries();
+// UserService.getAllColumns();
+// UserService.getAllElevators();
+// UserService.getAllBuildings();
+// const [comments, setComments] = useState([]);
+// useEffect(() => {
+//   fetchComments();
+// }, []);
+// useEffect(() => {
+//   console.log(comments);
+// }, [comments]);
+// const fetchComments = async () => {
+//   const response = await Axios("https://jsonplaceholder.typicode.com/comments");
+//   setComments(response.data);
+// };
 
 const building = JSON.parse(localStorage.buildings);
 const battery = JSON.parse(localStorage.batteries);
@@ -30,7 +41,7 @@ class Intervention extends React.Component {
       columns: [],
       elevators: [],
       buildingselectValue: "Building",
-      batteryselectValue: "Battery",
+      batteryselectValue: "",
       columnselectValue: "Column",
       elevatorselectValue: "Elevator",
       reportvalue: "report",
@@ -42,10 +53,29 @@ class Intervention extends React.Component {
     this.handlereportChange = this.handlereportChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handlebuildingChange(e) {
-    console.log("Fruit Selected!!");
+
+  meowresponse = axios
+    .get("https://java-api.codeboxxtest.xyz/buildings/1/batteries", {
+      headers: authHeader(),
+    })
+    .then(function (response) {
+      console.log(response.data[0]);
+
+      this.setState({
+        batteryselectValue: JSON.stringify(response.data[0].id),
+      });
+    });
+
+  handlebuildingChange(e, m) {
+    console.log("Building Selected!!");
     this.setState({ buildingselectValue: e.target.value });
+
+    m = UserService.getUserBattery;
+    console.log(m);
+    return m;
   }
+
+  // console.log(meowresponse);
   handlebatteryChange(e) {
     console.log("Fruit Selected!!");
     this.setState({ batteryselectValue: e.target.value });
@@ -163,44 +193,7 @@ class Intervention extends React.Component {
         <div className="Auth-form-content">
           <Form className="Auth-form" onSubmit={this.handleSubmit}>
             <h3 className="Auth-form-title">New Intervention Form</h3>
-            {/* <div className="text-center">
-              Haven't Registered?{" "}
-              <span className="link-primary" onClick={changeAuthMode}>
-                Sign up
-              </span>
-            </div> */}
-            {/* <Form.Group
-              size="lg"
-              className="form-group mt-3"
-              controlId="buildingOptions"
-            >
-              <Form.Label>Building:</Form.Label>
-
-              <Form.Control
-                autoFocus
-                type="text"
-                className="form-control mt-1"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group
-              size="lg"
-              className="form-group mt-3"
-              controlId="password"
-            >
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                className="form-control mt-1"
-                value={password}
-                placeholder="Enter password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Form.Group> */}
-
+            <Form.Label>Building</Form.Label>
             <Form.Select
               value={this.state.buildingselectValue}
               size="lg"

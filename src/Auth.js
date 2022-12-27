@@ -48,23 +48,23 @@ export default function Auth() {
       // sessiontoken(email,password)
       navigate("/");
     } else {
-      console.log("Invaild Credentials");
+      alert("Invaild Credentials");
     }
     event.preventDefault();
   }
-  function sessiontoken(email, password) {
-    axios
-      .request(
-        "https://java-api.codeboxxtest.xyz/authenticate?email=customer1%40business.com&password=password123"
-      )
-      .then(function (response) {
-        console.log(response.data);
-        console.log(response.status);
-        console.log(response.statusText);
-        console.log(response.headers);
-        console.log(response.config);
-      });
-  }
+  // function sessiontoken(email, password) {
+  //   axios
+  //     .request(
+  //       "https://java-api.codeboxxtest.xyz/authenticate?email=customer1%40business.com&password=password123"
+  //     )
+  //     .then(function (response) {
+  //       console.log(response.data);
+  //       console.log(response.status);
+  //       console.log(response.statusText);
+  //       console.log(response.headers);
+  //       console.log(response.config);
+  //     });
+  // }
   if (authMode === "signin") {
     return (
       <div className="Auth-form-container">

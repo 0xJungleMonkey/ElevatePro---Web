@@ -1,23 +1,13 @@
-
-
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  
-} from 'react-router-dom';
-import Home from './Home';
-import Login from './Auth';
-import Intervention from './Intervention';
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import Login from "./Auth";
+import Intervention from "./Intervention-new";
 
 function App() {
-  
-
   return (
-      <Router>
+    <Router>
       <div className="App">
-     {/* <ul>
+        {/* <ul>
       <li>
         <Link to="/">Home</Link>
       </li>
@@ -28,14 +18,13 @@ function App() {
         <Link to="/intervention">Contact Us</Link>
       </li>
     </ul> */}
-    <Routes>
-    <Route exact path='/' element={< Home />}></Route>
-    <Route exact path='/login' element={< Login />}></Route>
-    <Route exact path='/intervention' element={< Intervention />}></Route>
-</Routes>
-</div>
-      </Router>
-       
+        <Routes>
+          <Route exact path="/" element={<Home />}></Route>
+          <Route exact path="/login" element={<Login />}></Route>
+          <Route exact path="/intervention" element={<Intervention />}></Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }
-export default App
+export default App;

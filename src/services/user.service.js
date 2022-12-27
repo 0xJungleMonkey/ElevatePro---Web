@@ -1,10 +1,11 @@
 import axios from "axios";
+import { Component, useState } from "react";
 // import { useState } from "react";
 import authHeader from "./auth-header";
 // import { useState } from "react";
 const API_URL = "http://localhost:8080/api/test/";
 
-class UserService {
+class UserService extends Component {
   getPublicContent() {
     return axios.get(API_URL + "all");
   }
@@ -63,6 +64,34 @@ class UserService {
         })
     );
   }
+  // getUserBattery() {
+  //   // let meowresponse = "";
+
+  //   axios
+  //     .get("https://java-api.codeboxxtest.xyz/buildings/1/batteries", {
+  //       headers: authHeader(),
+  //     })
+  //     .then(function (response) {
+  //       console.log(response.data[0]);
+
+  //       setrealname1(JSON.stringify(response.data[0]));
+  //       console.log(realname1);
+  //     });
+
+  //   console.log(realname1);
+  //   return realname1;
+  //   // return (
+  //   //   axios
+  //   //     .get("https://java-api.codeboxxtest.xyz/buildings/1/batteries", {
+  //   //       headers: authHeader(),
+  //   //     })
+  //   //     // .then((response) => JSON.stringify(response))
+  //   //     .then(function (response) {
+  //   //       localStorage.setItem("userbattery", JSON.stringify(response.data));
+  //   //     })
+  //   // );
+  // }
+
   getAllColumns() {
     return (
       axios
