@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+# ElevatePro - Web
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features
+Login Authentication
+Cascading Form to create new intervention request
+Manage owned elevators
 
 ## Available Scripts
 
